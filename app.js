@@ -10,6 +10,44 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+let employees =[];
+
+//create funtions createEngineer, createManager &intern
+//in side the function they are almost identical. Theyre each run inquire with thier specific quesitons. and inside the .then I wil creat an instance of that class.(new manager etc)
+//grab the instance of created class and push it he employeed arry.
+//Then ask they first question agian (employeeType function)..it will be a loop
+//
+function employeeType() {
+    inquirer.prompt([{
+                type: 'list',
+                name: 'employeeType',
+                message: 'What employee do you want to enter?',
+                choices: ['Engineer' ,'Manager', 'Intern', 'No Employee']
+            }
+        ]
+    ).then(response => {
+        switch(response.employeeType){
+        case 'Engineer':
+            createEngineer();
+            break;
+        case 'Manager':
+            createManager();
+            break;
+        case 'Intern':
+            createIntern();
+            break;  
+        default:
+            let htmlString = render(employees)
+
+            fs.writeFile(outputPath, htmlString, function (error){
+                if (error){
+                    throw error;
+                }
+            })
+        }
+    })
+}
+
 const engineerQuestions = [
         {
             type: 'input',
@@ -19,12 +57,12 @@ const engineerQuestions = [
         {
             type: 'input',
             name: 'idNumber',
-            message: 'What is your ID Number? ',
+            message: 'What is your ID Number?',
         },
         {
             type: 'input',
             name: 'email',
-            message: 'What is your Email address? ',
+            message: 'What is your Email address?',
         },
         {
             type: 'input',
