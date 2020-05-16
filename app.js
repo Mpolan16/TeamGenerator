@@ -12,11 +12,6 @@ const render = require("./lib/htmlRenderer");
 
 let employees =[];
 
-//create funtions createEngineer, createManager &intern
-//in side the function they are almost identical. Theyre each run inquire with thier specific quesitons. and inside the .then I wil creat an instance of that class.(new manager etc)
-//grab the instance of created class and push it he employeed arry.
-//Then ask they first question agian (employeeType function)..it will be a loop
-//
 function employeeType() {
     inquirer.prompt([{
                 type: 'list',
@@ -93,7 +88,7 @@ const engineerQuestions = [
             message: 'What is your office number?',
         }
         ];
-    const engineerQuestions = [
+    const internQuestions = [
         {
             type: 'input',
             name: 'internName',
@@ -115,6 +110,28 @@ const engineerQuestions = [
             message: 'What is your school name?',
         }
     ];
+
+
+//in side the function they are almost identical. Theyre each run inquire with thier specific quesitons. and inside the .then I wil creat an instance of that class.(new manager etc)
+//grab the instance of created class and push it he employeed arry.
+//Then ask they first question agian (employeeType function)..it will be a loop
+//git
+function createEngineer() {
+    inquirer.prompt(engineerQuestions).then(response => {
+        const engineer = new Engineer(response.engineerName, response.idNumber, response.email, response.githubUser)
+        return engineer
+    });
+   };
+function createManager() {
+    inquirer.prompt(managerQuestions).then(response => {
+        const manager = new Manager(response.managerName, response.idNumber, response.email, response.office)
+        return manager
+   });
+function createIntern() {
+   inquirer.prompt(internQuestions).then(response => {
+        const intern = new Intern(response.internName, response.idNumber, response.email, response.school)
+        return intern
+   });
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
