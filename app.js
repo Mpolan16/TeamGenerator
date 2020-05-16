@@ -32,13 +32,16 @@ function employeeType() {
             createIntern();
             break;  
         default:
-            let htmlString = render(employees)
-
-            fs.writeFile(outputPath, htmlString, function (error){
-                if (error){
-                    throw error;
-                }
-            })
+            if (employees.length > 0) {
+                let htmlString = render(employees)
+                fs.writeFile(outputPath, htmlString, function (error){
+                    if (error){
+                        throw error;
+                    }
+                });
+            } else {
+                console.log("No employees have been created.")
+            }
         }
     })
 }
@@ -115,6 +118,7 @@ function createEngineer() {
     inquirer.prompt(engineerQuestions).then(response => {
         const engineer = new Engineer(response.engineerName, response.idNumber, response.email, response.githubUser)
         employees.push(engineer)
+        employeeType();
     });
 };
 
@@ -122,6 +126,7 @@ function createManager() {
     inquirer.prompt(managerQuestions).then(response => {
         const manager = new Manager(response.managerName, response.idNumber, response.email, response.office)
         employees.push(manager)
+        employeeType();
     });
 };
 
@@ -129,6 +134,7 @@ function createIntern() {
    inquirer.prompt(internQuestions).then(response => {
         const intern = new Intern(response.internName, response.idNumber, response.email, response.school)
         employees.push(intern)
+        employeeType();
     });
 };
 
