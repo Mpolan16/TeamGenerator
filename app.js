@@ -70,7 +70,7 @@ const engineerQuestions = [
         {
             type: 'input',
             name: 'managerName',
-            message: 'What is your Name?',
+            message: 'Manager, What is your name?',
         },
         {
             type: 'input',
@@ -136,4 +136,4 @@ function createIntern() {
 
 
 createManager();
-employeeType();
+// employeeType();
