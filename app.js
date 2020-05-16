@@ -17,16 +17,13 @@ function employeeType() {
                 type: 'list',
                 name: 'employeeType',
                 message: 'What employee do you want to enter?',
-                choices: ['Engineer' ,'Manager', 'Intern', 'No Employee']
+                choices: ['Engineer' , 'Intern', 'No Employee']
             }
         ]
     ).then(response => {
         switch(response.employeeType){
         case 'Engineer':
             createEngineer();
-            break;
-        case 'Manager':
-            createManager();
             break;
         case 'Intern':
             createIntern();
@@ -122,12 +119,11 @@ function createEngineer() {
     });
 };
 
-function createManager() {
-    inquirer.prompt(managerQuestions).then(response => {
-        const manager = new Manager(response.managerName, response.idNumber, response.email, response.office)
-        employees.push(manager)
-        employeeType();
-    });
+async function createManager() {
+    const response = await inquirer.prompt(managerQuestions)
+    const manager = new Manager(response.managerName, response.idNumber, response.email, response.office)
+    await employees.push(manager)
+    await employeeType();
 };
 
 function createIntern() {
@@ -138,4 +134,6 @@ function createIntern() {
     });
 };
 
+
+createManager();
 employeeType();
