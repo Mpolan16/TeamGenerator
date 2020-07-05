@@ -10,10 +10,6 @@ The Team Generator is a quick easy way for a manager to generate employee inform
 
 * [Usage](#usage)
 
-* [License](#license)
-
-* [Contributing](#contributing)
-
 * [Tests](#tests)
 
 * [Questions](#questions)
@@ -24,19 +20,12 @@ The Team Generator is a quick easy way for a manager to generate employee inform
 
 ## Usage
 
+![Thumbnail of app](TeamGenerator.png)
 ```node app.js```
 
 ```? Manager, what is your name?  Monica Polanco```
 
 https://share.getcloudapp.com/bLuevvpA
-
-## License
- This project is licensed under ![badge](https://img.shields.io/badge/License-MIT-blue).
-
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
 
 ## Tests
  
